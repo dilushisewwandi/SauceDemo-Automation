@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [SauceDemo Test Suite]">
+  <test thread-count="5" name="SauceDemo Test Cases(failed)">
+    <classes>
+      <class name="test.ProductCheckoutTest">
+        <methods>
+          <include name="closeBrowser"/>
+          <include name="checkoutProduct" invocation-numbers="0"/>
+          <include name="openLoginPage"/>
+        </methods>
+      </class> <!-- test.ProductCheckoutTest -->
+      <class name="test.LoginTest">
+        <methods>
+          <include name="visualUserLogin" invocation-numbers="0"/>
+          <include name="closeBrowser"/>
+          <include name="performanceGlitchUserLogin" invocation-numbers="0"/>
+          <include name="problemUserLogin" invocation-numbers="0"/>
+          <include name="openLoginPage"/>
+        </methods>
+      </class> <!-- test.LoginTest -->
+    </classes>
+  </test> <!-- SauceDemo Test Cases(failed) -->
+</suite> <!-- Failed suite [SauceDemo Test Suite] -->
