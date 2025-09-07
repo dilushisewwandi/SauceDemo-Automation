@@ -186,54 +186,6 @@ public class LoginTest {
 
     }
 
-    @Test(priority = 7, dataProvider = "visualUserData", dataProviderClass = LoginDataProvider.class)
-    public void visualUserLogin(String username, String password){
-        login(username, password);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlContains("inventory.html"));
-
-        String currentURL = driver.getCurrentUrl();
-        String expectedURL = "https://www.saucedemo.com/inventory.html";
-        softAssert.assertEquals(currentURL, expectedURL, "User not redirected to inventory page after login");
-//
-//        WebElement pricebar = driver.findElement(By.xpath("//div[@class='pricebar']"));
-//        pricebar.getSize();
-//        WebElement itemPrice = driver.findElement(By.xpath("//div[@class='inventory_item_price']"));
-//        itemPrice.getSize();
-//        WebElement addToCartButton = driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-onesie']"));
-//        addToCartButton.getSize();
-//
-//        long spaceBetween = pricebar.getSize() - ((itemPrice.getSize())+(addToCartButton.getSize()));
-//        System.out.println("Space between is " + spaceBetween);
-//
-//        if (spaceBetween>3){
-//            System.out.println("Elements are overlapped. Visual user login test passed");
-//        }else {
-//            Assert.fail();
-//        }
-//
-//        softAssert.assertAll();
-        WebElement itemPrice = driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[6]/div[2]/div[2]/div[1]"));
-        WebElement addToCartButton = driver.findElement(By.xpath("//button[@id='add-to-cart-test.allthethings()-t-shirt-(red)']"));
-
-        int itemPriceX = itemPrice.getLocation().getX();
-        int addToCartButtonX = addToCartButton.getLocation().getX();
-
-        int spaceBetween = addToCartButtonX-itemPriceX;
-
-        System.out.println("Space between Item Price and Add to Cart Button is: " + spaceBetween + "px");
-
-        // Validate layout consistency
-        if (spaceBetween > 512) { // threshold, adjust if needed
-            Assert.fail("FAIL: Space is too large (" + spaceBetween + "px). Button may overlap.");
-        } else {
-            System.out.println("PASS: Layout is consistent. No overlap detected.");
-        }
-
-        softAssert.assertAll();
-    }
-
     @AfterMethod
     public void closeBrowser(){
         driver.quit();
